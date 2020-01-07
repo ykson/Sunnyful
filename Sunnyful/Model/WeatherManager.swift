@@ -20,18 +20,30 @@ struct WeatherManager {
     var delegate: WeatherManagerDelegate?
     
     /**
-        초단기실황
+        초단기실황 날씨정보
      */
     func getLiveWeather(latitude: Double, longitude: Double) {
         if var urlComponents = URLComponents(string: defaultURL + liveWeatherFilePath) {
+            //< get the current date information
+            let dateInfo = DateUtils.shared.getDateInfo()
+            //< set the base date
+            let baseDate = String.init(format: "%04d%02d%02d", dateInfo.year, dateInfo.month, dateInfo.day)
+            //< set the base time
+            let baseTime = String.init(format: "%02d00", dateInfo.hour)
+            
+            print(baseTime)
+            
+            //< convert the latitude and longitude to X, Y
+            let locationXY = LamcUtils.shared.convertGRID_GPS(toXY: true, lat_x: latitude, lot_y: longitude)
+            
             //< set a parameters
             urlComponents.queryItems = [
                 URLQueryItem(name: "serviceKey", value: serviceKey),
-                URLQueryItem(name: "base_date", value: "20200106"),
-                URLQueryItem(name: "base_time", value: "0600"),
+                URLQueryItem(name: "base_date", value: baseDate),
+                URLQueryItem(name: "base_time", value: baseTime),
                 URLQueryItem(name: "_type", value: "json"),
-                URLQueryItem(name: "nx", value: "62"),
-                URLQueryItem(name: "ny", value: "125"),
+                URLQueryItem(name: "nx", value: String(locationXY.x)),
+                URLQueryItem(name: "ny", value: String(locationXY.y)),
                 URLQueryItem(name: "pageNo", value: "1"),
                 URLQueryItem(name: "numOfRows", value: "500")
             ]
@@ -44,6 +56,7 @@ struct WeatherManager {
     }
     
     func performWeather(with url: URL) {
+        print("request : \(url)")
         //< Create a configuration of URL session
         let configure = URLSessionConfiguration.default
         configure.timeoutIntervalForRequest = 3
@@ -77,14 +90,13 @@ struct WeatherManager {
         do {
             let decodedData = try decoder.decode(LiveWeatherData.self, from: weatherData)
             print(decodedData)
-            print(decodedData.response.body.items.item[0].baseTime)
 
             //< get a weather model
             let liveWeatherModel = LiveWeatherModel(temperature: 0.0)
 
             return liveWeatherModel
         } catch {
-            print(error.localizedDescription)
+            print(error)
             delegate?.didFailWithError(error: error)
             return nil
         }

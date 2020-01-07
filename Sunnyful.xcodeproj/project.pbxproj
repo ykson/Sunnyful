@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B305AA5723C444500059587B /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B305AA5623C444500059587B /* DateUtils.swift */; };
 		B33B9E2C23C1D4A8003FB728 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33B9E2B23C1D4A8003FB728 /* AppDelegate.swift */; };
 		B33B9E2E23C1D4A8003FB728 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33B9E2D23C1D4A8003FB728 /* SceneDelegate.swift */; };
 		B33B9E3023C1D4A8003FB728 /* CurrentWeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33B9E2F23C1D4A8003FB728 /* CurrentWeatherViewController.swift */; };
@@ -16,9 +17,11 @@
 		B33B9E4423C1D67D003FB728 /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33B9E4323C1D67D003FB728 /* WeatherManager.swift */; };
 		B3A2B09223C32E9F00D2F3C8 /* LiveWeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A2B09123C32E9F00D2F3C8 /* LiveWeatherData.swift */; };
 		B3A2B09423C32FF200D2F3C8 /* LiveWeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A2B09323C32FF200D2F3C8 /* LiveWeatherModel.swift */; };
+		B3A2B09623C4290A00D2F3C8 /* LamcUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A2B09523C4290A00D2F3C8 /* LamcUtils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B305AA5623C444500059587B /* DateUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
 		B33B9E2823C1D4A8003FB728 /* Sunnyful.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sunnyful.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B33B9E2B23C1D4A8003FB728 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B33B9E2D23C1D4A8003FB728 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -30,6 +33,7 @@
 		B33B9E4323C1D67D003FB728 /* WeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
 		B3A2B09123C32E9F00D2F3C8 /* LiveWeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveWeatherData.swift; sourceTree = "<group>"; };
 		B3A2B09323C32FF200D2F3C8 /* LiveWeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveWeatherModel.swift; sourceTree = "<group>"; };
+		B3A2B09523C4290A00D2F3C8 /* LamcUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LamcUtils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +108,8 @@
 				B33B9E4323C1D67D003FB728 /* WeatherManager.swift */,
 				B3A2B09123C32E9F00D2F3C8 /* LiveWeatherData.swift */,
 				B3A2B09323C32FF200D2F3C8 /* LiveWeatherModel.swift */,
+				B3A2B09523C4290A00D2F3C8 /* LamcUtils.swift */,
+				B305AA5623C444500059587B /* DateUtils.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -180,9 +186,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				B33B9E3023C1D4A8003FB728 /* CurrentWeatherViewController.swift in Sources */,
+				B305AA5723C444500059587B /* DateUtils.swift in Sources */,
 				B33B9E2C23C1D4A8003FB728 /* AppDelegate.swift in Sources */,
 				B3A2B09423C32FF200D2F3C8 /* LiveWeatherModel.swift in Sources */,
 				B33B9E4423C1D67D003FB728 /* WeatherManager.swift in Sources */,
+				B3A2B09623C4290A00D2F3C8 /* LamcUtils.swift in Sources */,
 				B33B9E2E23C1D4A8003FB728 /* SceneDelegate.swift in Sources */,
 				B3A2B09223C32E9F00D2F3C8 /* LiveWeatherData.swift in Sources */,
 			);

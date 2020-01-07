@@ -14,7 +14,7 @@ struct LiveWeatherData: Codable {
 
 struct Response: Codable {
     let header: Header
-    let body: Body
+    let body: Body?
 }
 
 struct Header: Codable {
@@ -23,8 +23,24 @@ struct Header: Codable {
 }
 
 struct Body: Codable {
-    let items: Items
+    let items: Items?
     let totalCount: Int
+    
+    enum CodingKeys: CodingKey {
+        case items, totalCount
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let items = try? container.decode(Items.self, forKey: .items) {
+            self.items = items
+        }
+        else {
+            self.items = nil
+        }
+        
+        self.totalCount = try container.decode(Int.self, forKey: .totalCount)
+    }
 }
 
 struct Items: Codable {
