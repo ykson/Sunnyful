@@ -10,7 +10,7 @@ import UIKit
 import CoreLocation
 
 class CurrentWeatherViewController: UIViewController {
-    
+    var isStop: Bool = false
     var locationManager = CLLocationManager()
     var weatherManager = WeatherManager()
 
@@ -18,6 +18,9 @@ class CurrentWeatherViewController: UIViewController {
         super.viewDidLoad()
         
         requestLocation()
+        
+        //< set the delegate of weather manager
+        weatherManager.delegate = self
     }
 
     /**
@@ -40,14 +43,21 @@ extension CurrentWeatherViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.last {
-            locationManager.stopUpdatingLocation()
+            //< stop location manager
+            self.locationManager.stopUpdatingLocation()
+            
             let lat = location.coordinate.latitude
             let lon = location.coordinate.longitude
             
             print("Get a location : lat=\(lat), lon=\(lon)")
             
             //< request a weather information
-            weatherManager.getLiveWeather(latitude: lat, longitude: lon)
+            if !isStop {
+                //< get the weather information
+                weatherManager.getWeatherInfo(latitude: lat, longitude: lon)
+                //< change the flag
+                isStop = true
+            }
         }
     }
     
@@ -56,3 +66,24 @@ extension CurrentWeatherViewController: CLLocationManagerDelegate {
     }
 }
 
+//< MARK: - Implement a WeatherManager delegate Methods
+
+extension CurrentWeatherViewController: WeatherManagerDelegate {
+    /**
+        Update The 초단기실황예보
+     */
+    func didUpdateLiveWeather(_ weatherManager: WeatherManager, liveWeather: LiveWeatherModel) {
+        DispatchQueue.main.async {
+            print(liveWeather)
+        }
+    }
+    
+    /**
+        Error
+     */
+    func didFailWithError(error: Error) {
+        DispatchQueue.main.async {
+            print("Error : \(error)")
+        }
+    }
+}

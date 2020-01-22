@@ -9,5 +9,5 @@
 import Foundation
 
 struct LiveWeatherModel {
-    let temperature: Double
+    var temperature: Double = 0.0
 }
